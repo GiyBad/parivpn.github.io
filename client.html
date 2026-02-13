@@ -3,116 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PariVpn Client</title>
+    <title>PariVpn Connect</title>
     <style>
-        :root {
-            --bg: #0b0f1a;
-            --card: #161b2c;
-            --accent: #38bdf8;
-            --text: #f8fafc;
-            --success: #4ade80;
+        :root { --bg: #0b0f1a; --accent: #38bdf8; --card: #161b2c; }
+        body { background: var(--bg); color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .card { background: var(--card); padding: 40px; border-radius: 30px; text-align: center; width: 85%; max-width: 400px; border: 1px solid #2d3748; }
+        .btn { 
+            background: var(--accent); color: #0b0f1a; padding: 20px; border-radius: 15px; 
+            text-decoration: none; font-weight: bold; display: block; font-size: 1.2rem;
+            margin-top: 20px; transition: 0.3s;
         }
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', -apple-system, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .client-card {
-            background: var(--card);
-            width: 90%;
-            max-width: 380px;
-            padding: 40px 20px;
-            border-radius: 35px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .status-dot {
-            width: 12px;
-            height: 12px;
-            background-color: var(--success);
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
-            box-shadow: 0 0 15px var(--success);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .v-logo {
-            font-size: 64px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 900;
-        }
-        h2 { margin: 10px 0; font-size: 24px; letter-spacing: 1px; }
-        .info { color: #94a3b8; font-size: 14px; margin-bottom: 40px; }
-        
-        .connect-btn {
-            background: var(--accent);
-            color: #0b0f1a;
-            text-decoration: none;
-            padding: 20px;
-            border-radius: 20px;
-            font-weight: 800;
-            display: block;
-            font-size: 18px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
-        }
-        .connect-btn:active {
-            transform: scale(0.92);
-        }
-        .server-box {
-            background: rgba(255,255,255,0.03);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 30px;
-            font-size: 13px;
-            color: #64748b;
-            text-align: left;
-        }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
+        .status { font-size: 0.8rem; color: #4ade80; margin-bottom: 10px; }
     </style>
 </head>
 <body>
+    <div class="card">
+        <div class="status">● СЕРВЕР ГОТОВ К ПОДКЛЮЧЕНИЮ</div>
+        <h1 style="margin: 0; color: var(--accent);">PariVpn</h1>
+        <p style="color: #94a3b8;">Нажмите кнопку, чтобы активировать защиту на этом устройстве</p>
+        
+        <a href="vless://00000000-0000-0000-0000-000000000000@giybad-parivpn.hf.space:443?encryption=none&security=tls&type=ws&host=giybad-parivpn.hf.space&path=%2Fvless#PariVpn" 
+           class="btn" id="vpnLink">АКТИВИРОВАТЬ VPN</a>
 
-<div class="client-card">
-    <div class="v-logo">PariVpn</div>
-    
-    <div style="margin-bottom: 25px;">
-        <span class="status-dot"></span>
-        <span style="color: var(--success); font-weight: 600; font-size: 14px;">СЕРВЕР АКТИВЕН</span>
+        <p style="font-size: 0.7rem; color: #4a5568; margin-top: 20px;">
+            Для работы на ПК требуется v2rayN, на Android/iOS — v2rayNG или FoXray.
+        </p>
     </div>
 
-    <div class="server-box">
-        <div>📍 Локация: Hugging Face Cloud</div>
-        <div>🔒 Протокол: VLESS + WS</div>
-    </div>
-
-    <p class="info">Нажмите кнопку ниже для импорта конфигурации в клиент v2rayNG</p>
-
-    <a href="vless://00000000-0000-0000-0000-000000000000@giybad-parivpn.hf.space:443?encryption=none&security=tls&type=ws&host=giybad-parivpn.hf.space&path=%2Fvless#PariVpn" 
-       class="connect-btn">ПОДКЛЮЧИТЬ КЛИЕНТ</a>
-
-    <div style="margin-top: 30px; font-size: 11px; color: #475569;">
-        Версия 1.0.2 (Build 2026)
-    </div>
-</div>
-
-<script>
-    // Авто-пробуждение сервера при открытии "клиента"
-    fetch('https://huggingface.co/spaces/GiyBad/PariVpn', { mode: 'no-cors' });
-</script>
-
+    <script>
+        // Будим Hugging Face при заходе на страницу
+        fetch('https://huggingface.co/spaces/GiyBad/PariVpn', { mode: 'no-cors' });
+        
+        // Маленький хак: если это ПК, можно добавить алерт с инструкцией
+        document.getElementById('vpnLink').addEventListener('click', function() {
+            console.log("Запрос на подключение отправлен в систему...");
+        });
+    </script>
 </body>
 </html>
