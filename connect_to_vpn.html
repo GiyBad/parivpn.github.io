@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PariVpn Connect</title>
+    <style>
+        body {
+            background: #0f172a;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid #334155;
+        }
+        .logo {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #38bdf8;
+            margin: 0 0 10px 0;
+            font-size: 28px;
+        }
+        p {
+            color: #94a3b8;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .btn {
+            background: #38bdf8;
+            color: #0f172a;
+            padding: 18px 30px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            display: block;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px 0 rgba(56, 189, 248, 0.39);
+        }
+        .btn:active {
+            transform: scale(0.96);
+            background: #0ea5e9;
+        }
+        .footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">🛡️</div>
+    <h1>PariVpn</h1>
+    <p>Нажмите на кнопку ниже, чтобы импортировать настройки в v2rayNG и подключиться.</p>
+    
+    <a href="vless://00000000-0000-0000-0000-000000000000@giybad-parivpn.hf.space:443?encryption=none&security=tls&type=ws&host=giybad-parivpn.hf.space&path=%2Fvless#PariVpn" 
+       class="btn" id="connectBtn">ПОДКЛЮЧИТЬСЯ</a>
+
+    <div class="footer">
+        После клика выберите приложение v2rayNG и нажмите на иконку подключения.
+    </div>
+</div>
+
+<script>
+    // Этот скрипт "будит" твой сервер на Hugging Face сразу при открытии страницы
+    window.onload = function() {
+        fetch('https://huggingface.co/spaces/GiyBad/PariVpn', { mode: 'no-cors' })
+        .then(() => console.log('Сервер PariVpn просыпается...'))
+        .catch(() => console.log('Ошибка пробуждения'));
+    };
+</script>
+
+</body>
+</html>
